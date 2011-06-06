@@ -107,7 +107,6 @@ static NSString* const kLabelTriona     = @"label/triona";
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
 	UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	[alert show];
-	NSLog(@"Hit error: %@", error);
 }
 
 #pragma mark -
@@ -129,7 +128,6 @@ static NSString* const kLabelTriona     = @"label/triona";
 // row
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSLog(@"%@" ,@"abc");
   NSString *CellIdentifier = @"MyIdentifer";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
