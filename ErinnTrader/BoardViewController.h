@@ -1,21 +1,20 @@
 
 #import <UIKit/UIKit.h>
-#import <RestKit/RestKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "GData.h"
+#import "BoardSettingsViewController.h"
+#import "BoardViewDataManager.h"
 #import "Entry.h"
 
-typedef enum {
-  ServerMari, ServerRuari, ServerTarlach, 
-  ServerMorrighan, ServerCichol, ServerTriona
-} Server;
-
-@interface BoardViewController : UIViewController <RKObjectLoaderDelegate, UITableViewDelegate> {
+@interface BoardViewController : UIViewController <UITableViewDelegate> {
  @private
+  IBOutlet BoardSettingsViewController *_boardSettingsViewController;
+  IBOutlet UISegmentedControl *_filterSegment;
   IBOutlet UITableView *_entryTable;
-  NSString *_resourcePath;
   NSArray *_entries;
 }
+@property (nonatomic, retain) BoardSettingsViewController *boardSettingsViewController;
+@property (nonatomic, retain) UISegmentedControl *filterSegment;
 @property (nonatomic, retain) UITableView *entryTable;
-@property (nonatomic, retain) NSString *resourcePath;
 @property (nonatomic, copy) NSArray *entries;
 @end

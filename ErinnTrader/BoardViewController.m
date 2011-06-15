@@ -1,72 +1,63 @@
 
 #import "BoardViewController.h"
 
-static NSString* const kServiceEndPoint = @"reader/public/javascript/";
-static NSString* const kUserIdentifier  = @"user/10597537711022658252/";
-static NSString* const kLabelMari       = @"label/mari";
-static NSString* const kLabelRuari      = @"label/ruari";
-static NSString* const kLabelTarlach    = @"label/tarlach";
-static NSString* const kLabelMorrighan  = @"label/morrighan";
-static NSString* const kLabelCichol     = @"label/cichol";
-static NSString* const kLabelTriona     = @"label/triona";
-
 @interface BoardViewController ()
-- (void)initObjectManager;
-- (void)drawEntryTable;
-- (void)loadEntries;
-- (void)changeServerTo:(Server)server;
+- (void)reloadEntryTable;
+- (void)entryTableWillLoad;
+- (void)entryTableDidLoad;
 @end
 
 @implementation BoardViewController
 
+@synthesize boardSettingsViewController = _boardSettingsViewController;
+@synthesize filterSegment = _filterSegment;
 @synthesize entryTable = _entryTable;
-@synthesize resourcePath = _resourcePath;
 @synthesize entries = _entries;
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)initObjectManager {
-  [RKRequestQueue sharedQueue].showsNetworkActivityIndicatorWhenBusy = YES;
-  RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://www.google.com/"];
-  [objectManager setFormat:RKMappingFormatJSON];
+////////////////////////////////////////////////////////////////////////////////
+// Observer
+
+- (void)initObserver {
+  [[BoardViewDataManager sharedManager] addObserver:self 
+                                         forKeyPath:@"isLoading" 
+                                            options:NSKeyValueObservingOptionNew 
+                                            context:NULL];
 }
 
-- (void)drawEntryTable {
-  [self.entryTable reloadData];
-}
-
-- (void)loadEntries {
-  RKObjectManager* objectManager = [RKObjectManager sharedManager];
-  RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:self.resourcePath delegate:self];
-  loader.objectClass = [Entry class];
-  loader.keyPath = @"items";
-  [loader send];
-}
-
-- (void)changeServerTo:(Server)server {
-  NSString *resourcePath = nil;
-  switch (server) {
-    case ServerMari:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelMari];
-      break;
-    case ServerRuari:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelRuari];
-      break;
-    case ServerTarlach:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelTarlach];
-      break;
-    case ServerMorrighan:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelMorrighan];
-      break;
-    case ServerCichol:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelCichol];
-      break;
-    case ServerTriona:
-      resourcePath = [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, kLabelTriona];
-      break;
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+  if ([keyPath isEqual:@"isLoading"] && [[change objectForKey:NSKeyValueChangeNewKey] boolValue]) {
+    [self entryTableWillLoad];
   }
-  self.resourcePath = resourcePath;
+  else {
+    [self entryTableDidLoad];
+  }
+}
+
+- (void)deleteObserver {
+  [[BoardViewDataManager sharedManager] removeObserver:self forKeyPath:@"isLoading"];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// View
+
+- (void)initNavigationBar {
+  self.navigationItem.leftBarButtonItem = 
+    [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStylePlain
+                                    target:self   action:@selector(leftBarButtonItemTouched)];
+  self.navigationItem.rightBarButtonItem = 
+    [[UIBarButtonItem alloc] initWithTitle:@"filter" style:UIBarButtonItemStylePlain
+                                    target:self     action:@selector(rightBarButtonItemTouched)];
+  [self.navigationController setToolbarHidden:YES];
+}
+
+- (void)initTabBar {
+  self.filterSegment.segmentedControlStyle = UISegmentedControlStyleBar;
 }
 
 #pragma mark -
@@ -74,10 +65,19 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self initObjectManager];
-  [self changeServerTo:ServerMari];
-  [self loadEntries];
-  [self drawEntryTable];
+  [self initObserver];
+  [self initNavigationBar];
+  [self initTabBar];
+  
+  [self reloadEntryTable];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +85,7 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)viewDidUnload {
+  [self deleteObserver];
   [super viewDidUnload];
 }
 
@@ -94,25 +95,40 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 #pragma mark -
-#pragma mark RKObjectLoaderDelegate Methods
+#pragma EventHandling Methods
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+- (void)leftBarButtonItemTouched {
+  CATransition *animation = [CATransition animation];
+  animation.type = kCATransitionFade;
+  animation.subtype = kCATransitionFromBottom;
+  [animation setDuration:0.5];
+  [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+  [[self.navigationController.view layer] addAnimation:animation forKey: @"transitionViewAnimation"];	
+  [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-  self.entries = objects;
-  [self drawEntryTable];
+- (void)rightBarButtonItemTouched {
+  UINavigationController *navigationController = 
+    [[[UINavigationController alloc] initWithRootViewController:self.boardSettingsViewController] autorelease];
+  [self.navigationController presentModalViewController:navigationController animated:YES];
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-	UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[alert show];
+- (void)reloadEntryTable {
+  [[BoardViewDataManager sharedManager] reloadData];
+}
+
+- (void)entryTableWillLoad {
+}
+
+- (void)entryTableDidLoad {
+  self.entries = [[BoardViewDataManager sharedManager] filteredEntries];
+  [self.entryTable reloadData];
 }
 
 #pragma mark -
 #pragma mark UITableView Delegate Methods
 
-// -----------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 // section
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -124,7 +140,7 @@ static NSString* const kLabelTriona     = @"label/triona";
   return [self.entries count];
 }
 
-// -----------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 // row
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,9 +155,7 @@ static NSString* const kLabelTriona     = @"label/triona";
   }
   Entry *entry = [self.entries objectAtIndex:indexPath.row];
   [cell.textLabel setText:entry.title];
-  
-  NSLog(@"%@" ,entry.title);
-  
+
   return cell;
 }
 

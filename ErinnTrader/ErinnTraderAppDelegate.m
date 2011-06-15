@@ -3,13 +3,11 @@
 
 @implementation ErinnTraderAppDelegate
 
-@synthesize window=_window;
-@synthesize tabBarController=_tabBarController;
+@synthesize window = _window;
+@synthesize navigationController = _navigationController;
+@synthesize launcherViewController = _launcherViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window.rootViewController = self.tabBarController;
-  [self.window makeKeyAndVisible];
-
   return YES;
 }
 
@@ -29,23 +27,10 @@
 }
 
 - (void)dealloc {
-  [_window release];
-  [_tabBarController release];
+  self.launcherViewController = nil;
+  self.navigationController = nil;
+  self.window = nil;
   [super dealloc];
 }
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-}
-*/
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
-{
-}
-*/
 
 @end
