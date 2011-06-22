@@ -1,6 +1,5 @@
 
 #import <UIKit/UIKit.h>
-#import <RestKit/RestKit.h>
 #import "LauncherViewController.h"
 #import "BoardViewController.h"
 #import "Entry.h"

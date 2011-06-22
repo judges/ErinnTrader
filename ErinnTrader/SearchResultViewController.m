@@ -1,57 +1,40 @@
 
-#import "BoardViewController.h"
+#import "SearchResultViewController.h"
 
-static NSString* const kServiceBaseURL  = @"http://www.google.com/";
-static NSString* const kServiceEndPoint = @"reader/public/javascript/";
-static NSString* const kUserIdentifier  = @"user/10597537711022658252/";
-static NSString* const kLabelMari       = @"label/mari";
-static NSString* const kLabelRuari      = @"label/ruari";
-static NSString* const kLabelTarlach    = @"label/tarlach";
-static NSString* const kLabelMorrighan  = @"label/morrighan";
-static NSString* const kLabelCichol     = @"label/cichol";
-static NSString* const kLabelTriona     = @"label/triona";
+static NSString* const kServiceBaseURL  = @"http://kuku-api.heroku.com/";
+static NSString* const kServiceEndPoint = @"erinn_trader/search/";
+static NSString* const kLabelMari       = @"mari/";
+static NSString* const kLabelRuari      = @"ruari/";
+static NSString* const kLabelTarlach    = @"tarlach/";
+static NSString* const kLabelMorrighan  = @"morrighan/";
+static NSString* const kLabelCichol     = @"cichol/";
+static NSString* const kLabelTriona     = @"triona/";
 
-@interface BoardViewController ()
+@interface SearchResultViewController ()
 - (void)reloadEntryTable;
 - (void)changeServerTo:(Server)server;
 - (void)changeTradeTypeTo:(TradeType)tradeType;
 - (NSString *)resourcePath;
 - (NSArray *)filteredEntries;
-- (IBAction)backButtonTouched;
-- (IBAction)searchButtonTouched;
+
 - (IBAction)tradeTypeChanged:(UISegmentedControl*)sender;
-- (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
 @end
 
-@implementation BoardViewController
+@implementation SearchResultViewController
 
-@synthesize searchBar = _searchBar;
 @synthesize filterSegment = _filterSegment;
 @synthesize entryTable = _entryTable;
-@synthesize refreshHeaderView = _refreshHeaderView;
-@synthesize reloading = _reloading;
+@synthesize activityIndicator = _activityIndicator;
 @synthesize entries = _entries;
 @synthesize server = _server;
+@synthesize keyword = _keyword;
 @synthesize tradeType = _tradeType;
-@synthesize lastUpdated = _lastUpdated;
 
 #pragma mark -
 #pragma mark Private Methods
 
 ////////////////////////////////////////////////////////////////////////////////
 // initializer
-
-- (void)initCacheManager {
-  [self addObserver:[CacheManager sharedManager]
-         forKeyPath:@"entries" 
-            options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
-            context:[[Constants kServerSymbol] objectAtIndex:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Server"] intValue]]];
-  [self addObserver:[CacheManager sharedManager]
-         forKeyPath:@"lastUpdated" 
-            options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
-            context:[[Constants kServerSymbol] objectAtIndex:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Server"] intValue]]];
-}
 
 - (void)initObjectManager {
   [RKRequestQueue sharedQueue].showsNetworkActivityIndicatorWhenBusy = YES;
@@ -60,32 +43,15 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)initNavigationBar {
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"launcher.png"] 
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:self   
-                                                                          action:@selector(backButtonTouched)];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                         target:self
-                                                                                         action:@selector(searchButtonTouched)];
-  self.navigationController.toolbarHidden = YES;
-  self.navigationItem.title = [[Constants kServerSymbol] objectAtIndex:self.server];
+  [self.navigationController setToolbarHidden:YES];
 }
 
-- (void)initRefreshHeaderView {
-  CGRect rect = CGRectMake(0.0f, 0.0f - self.entryTable.bounds.size.height, self.view.frame.size.width, self.entryTable.bounds.size.height);
-  self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:rect];
-  self.refreshHeaderView.delegate = self;
-  [self.entryTable addSubview:self.refreshHeaderView];
-}
-
-- (void)initSearchBar {
-  self.searchBar.frame = CGRectMake(0, -44, 320, 44);
-  [self.navigationController.navigationBar addSubview:self.searchBar];
+- (void)initActivityIndicator {
+  self.activityIndicator = [[LabeledActivityIndicatorView alloc] initWithParentView:self.entryTable andText:@"Loading"];
 }
 
 - (void)initControllerState {
   self.entries = [NSArray array];
-  self.lastUpdated = [NSDate date];
   [self changeServerTo:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Server"] intValue]];
   [self changeTradeTypeTo:TradeTypeAll];
 }
@@ -94,26 +60,16 @@ static NSString* const kLabelTriona     = @"label/triona";
 // Logic
 
 - (void)reloadEntryTable {
-  RKObjectManager* objectManager = [RKObjectManager sharedManager];
-  RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:self.resourcePath 
-                                                        queryParams:[NSDictionary dictionaryWithObject:@"100" forKey:@"n"]
-                                                           delegate:self];
+  [NSThread detachNewThreadSelector:@selector(show) toTarget:self.activityIndicator withObject:nil];
+  RKObjectManager* objectManager = [[RKObjectManager objectManagerWithBaseURL:kServiceBaseURL] retain];
+  RKObjectLoader* loader = [objectManager objectLoaderWithResourcePath:self.resourcePath delegate:self];
   loader.objectClass = [Entry class];
-  loader.keyPath = @"items";
   [loader send];
 }
 
 - (void)changeServerTo:(Server)server {
-  self.server = server;
-}
-
-- (void)changeTradeTypeTo:(TradeType)tradeType {
-  self.tradeType = tradeType;
-}
-
-- (NSString *)resourcePath {
-  NSString *label = @"";
-  switch (self.server) {
+  NSString *label = nil;
+  switch (server) {
     case ServerMari:
       label = kLabelMari;
       break;
@@ -133,7 +89,15 @@ static NSString* const kLabelTriona     = @"label/triona";
       label = kLabelTriona;
       break;
   }
-  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, label];
+  self.server = label;
+}
+
+- (void)changeTradeTypeTo:(TradeType)tradeType {
+  self.tradeType = tradeType;
+}
+
+- (NSString *)resourcePath {
+  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, self.server, [self.keyword encodeString:NSUTF8StringEncoding]];
 }
 
 - (NSArray *)filteredEntries {
@@ -181,23 +145,21 @@ static NSString* const kLabelTriona     = @"label/triona";
   return filteredEntries;
 }
 
+
 #pragma mark -
 #pragma mark Inherit Methods
 
 -(void)loadView {
   [super loadView];
-  [self initCacheManager];
+  [self initNavigationBar];
+  [self initActivityIndicator];
   [self initControllerState];
   [self initObjectManager];
-  [self initNavigationBar];
-  [self initRefreshHeaderView];
-  [self initSearchBar];
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self.refreshHeaderView refreshLastUpdatedDate];
-  [self.entryTable reloadData];
+  [self reloadEntryTable];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -209,39 +171,15 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)dealloc {
-  self.refreshHeaderView = nil;
   self.entries = nil;
-  self.lastUpdated = nil;
-  [self removeObserver:[CacheManager sharedManager] forKeyPath:@"entries"];
-  [self removeObserver:[CacheManager sharedManager] forKeyPath:@"lastUpdated"];
+  self.server = nil;
+  self.keyword = nil;
+  self.activityIndicator = nil;
   [super dealloc];
 }
 
 #pragma mark -
 #pragma EventHandling Methods
-
-- (IBAction)backButtonTouched {
-  CATransition *animation = [CATransition animation];
-  animation.type = kCATransitionFade;
-  animation.subtype = kCATransitionFromBottom;
-  [animation setDuration:0.5];
-  [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-  [[self.navigationController.view layer] addAnimation:animation forKey:@"transitionViewAnimation"];	
-  [self.navigationController popViewControllerAnimated:NO];
-}
-
-- (IBAction)searchButtonTouched {
-  [UIView animateWithDuration:0.3
-                   animations:^{ self.searchBar.frame = CGRectMake(0, 0, 320, 44); }];
-  
-  UIView *overlay = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
-  overlay.tag = 99567;
-  overlay.backgroundColor = [UIColor blackColor];
-  overlay.alpha = 0.7;
-  [self.view addSubview:overlay];
-  
-  [self.searchBar becomeFirstResponder];
-}
 
 - (IBAction)tradeTypeChanged:(UISegmentedControl*)sender {
   [self changeTradeTypeTo:sender.selectedSegmentIndex];
@@ -256,7 +194,8 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
   self.entries = objects;
-  [self doneLoadingTableViewData];
+  [self.activityIndicator hide];
+  [self.entryTable reloadData];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
@@ -311,8 +250,8 @@ static NSString* const kLabelTriona     = @"label/triona";
   Entry *entry = [self.filteredEntries objectAtIndex:indexPath.row];
   cell.textLabel.text = entry.title;
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", 
-    entry.author, [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]]];
-
+                               entry.author, [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]]];
+  
   return cell;
 }
 
@@ -321,70 +260,6 @@ static NSString* const kLabelTriona     = @"label/triona";
     [[[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil] autorelease];
   detailViewController.entry = [self.filteredEntries objectAtIndex:indexPath.row];
   [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
-#pragma mark -
-#pragma mark Data Source Loading / Reloading Methods
-
-- (void)reloadTableViewDataSource {
-	self.reloading = YES;
-  [self reloadEntryTable];
-}
-
-- (void)doneLoadingTableViewData {
-	self.reloading = NO;
-  self.lastUpdated = [NSDate date];
-	[self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.entryTable];
-  [self.entryTable reloadData];
-}
-
-
-#pragma mark -
-#pragma mark UIScrollViewDelegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {	
-	[self.refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-	[self.refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
-	[self reloadTableViewDataSource];
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view {
-	return self.reloading;
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
-	return self.lastUpdated;
-}
-
-#pragma -
-#pragma UISearchBarDelegate Methods
-
-- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {  
-  [UIView animateWithDuration:0.3
-                   animations:^{ self.searchBar.frame = CGRectMake(0, -44, 320, 44); }];
-  [[self.view viewWithTag:99567] removeFromSuperview];
-  [searchBar resignFirstResponder];
-
-  SearchResultViewController *searchResultViewController =
-    [[[SearchResultViewController alloc] initWithNibName:@"SearchResultView" bundle:nil] autorelease];
-  searchResultViewController.keyword = searchBar.text;
-  [self.navigationController pushViewController:searchResultViewController animated:YES];
-}  
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-  [UIView animateWithDuration:0.3
-                   animations:^{ self.searchBar.frame = CGRectMake(0, -44, 320, 44); }];
-  [[self.view viewWithTag:99567] removeFromSuperview];
-  [searchBar resignFirstResponder];
 }
 
 @end
