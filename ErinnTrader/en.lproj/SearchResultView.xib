@@ -67,18 +67,19 @@
 					</object>
 					<object class="IBUIToolbar" id="883135929">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">266</int>
+						<int key="NSvFlags">303</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUISegmentedControl" id="766269226">
 								<reference key="NSNextResponder" ref="883135929"/>
-								<int key="NSvFlags">258</int>
-								<string key="NSFrame">{{6, 8}, {305, 30}}</string>
+								<int key="NSvFlags">303</int>
+								<string key="NSFrame">{{6, 8}, {297, 30}}</string>
 								<reference key="NSSuperview" ref="883135929"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
+								<int key="IBUIContentHorizontalAlignment">3</int>
+								<int key="IBUIContentVerticalAlignment">3</int>
 								<int key="IBSegmentControlStyle">2</int>
 								<int key="IBNumberOfSegments">3</int>
 								<int key="IBSelectedSegmentIndex">0</int>
@@ -118,12 +119,13 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="766269226"/>
 						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIBarButtonItem" id="710878624">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<float key="IBUIWidth">297</float>
 								<reference key="IBUICustomView" ref="766269226"/>
 								<reference key="IBUIToolbar" ref="883135929"/>
 							</object>
@@ -257,6 +259,7 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="766269226"/>
 						<reference key="parent" ref="710878624"/>
+						<string key="objectName">Segmented Control - ALL, SELL, BUY</string>
 					</object>
 				</object>
 			</object>

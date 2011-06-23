@@ -68,7 +68,6 @@ static NSString* const kLabelTriona     = @"label/triona";
                                                                                          target:self
                                                                                          action:@selector(searchButtonTouched)];
   self.navigationController.toolbarHidden = YES;
-  self.navigationItem.title = [[Constants kServerSymbol] objectAtIndex:self.server];
 }
 
 - (void)initRefreshHeaderView {
@@ -290,9 +289,10 @@ static NSString* const kLabelTriona     = @"label/triona";
   CGSize ts1 = [entry.title sizeWithFont:[UIFont systemFontOfSize:13]
                        constrainedToSize:CGSizeMake(tableView.frame.size.width - 40, tableView.frame.size.height)
                            lineBreakMode:UILineBreakModeWordWrap];  
-  CGSize ts2 = [[ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]] sizeWithFont:[UIFont systemFontOfSize:13]
-                                                                                                constrainedToSize:tableView.frame.size
-                                                                                                    lineBreakMode:UILineBreakModeWordWrap];  
+  NSString *detailText = [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]];
+  CGSize ts2 = [detailText sizeWithFont:[UIFont systemFontOfSize:13]
+                                               constrainedToSize:tableView.frame.size
+                                                   lineBreakMode:UILineBreakModeWordWrap];  
   return ts1.height + ts2.height + 10;
 }
 
@@ -306,9 +306,10 @@ static NSString* const kLabelTriona     = @"label/triona";
     cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
   }
   Entry *entry = [self.filteredEntries objectAtIndex:indexPath.row];
+  
   cell.textLabel.text = entry.title;
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", 
     entry.author, [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]]];

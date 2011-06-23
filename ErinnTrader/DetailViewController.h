@@ -1,7 +1,9 @@
 
 #import <UIKit/UIKit.h>
 #import <RestKit/RestKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "Entry.h"
+#import "ApplicationHelper.h"
 
 @interface DetailViewController : UIViewController {
  @private

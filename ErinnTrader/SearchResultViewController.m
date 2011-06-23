@@ -245,7 +245,7 @@ static NSString* const kLabelTriona     = @"triona/";
     cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
   }
   Entry *entry = [self.filteredEntries objectAtIndex:indexPath.row];
   cell.textLabel.text = entry.title;

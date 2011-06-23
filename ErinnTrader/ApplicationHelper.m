@@ -16,11 +16,11 @@
   NSInteger days = [today daysAfterDate:date];
   NSString *period;
   if(days >= 365){
-    float years = round(days / 365) / 2.0f;
+    int years = round(days / 365) / 2.0f;
     period = (years > 1) ? @"years" : @"year";
     formatted = [NSString stringWithFormat:@"%i %@ ago", years, period];
   } else if(days < 365 && days >= 30) {
-    float months = round(days / 30) / 2.0f;
+    int months = round(days / 30) / 2.0f;
     period = (months > 1) ? @"months" : @"month";
     formatted = [NSString stringWithFormat:@"%i %@ ago", months, period];
   } else if(days < 30 && days >= 2) {
