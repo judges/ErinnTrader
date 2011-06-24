@@ -67,6 +67,7 @@ static NSString* const kLabelTriona     = @"label/triona";
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
                                                                                          target:self
                                                                                          action:@selector(searchButtonTouched)];
+  self.navigationController.navigationBarHidden = NO;
   self.navigationController.toolbarHidden = YES;
 }
 

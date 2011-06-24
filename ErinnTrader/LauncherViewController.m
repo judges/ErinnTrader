@@ -2,12 +2,18 @@
 #import "LauncherViewController.h"
 
 @interface LauncherViewController ()
+- (void)initNavigationBar;
 @end
 
 @implementation LauncherViewController
 
 #pragma -
 #pragma Private Methods
+
+- (void)initNavigationBar {
+  self.navigationController.navigationBarHidden = YES;
+  self.navigationController.toolbarHidden = YES;
+}
 
 #pragma -
 #pragma Inheritance Methods
@@ -18,6 +24,11 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self initNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +70,17 @@
   AppSettingsViewController *appSettingsViewController = 
     [[[AppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil] autorelease];
   [self.navigationController pushViewController:appSettingsViewController animated:NO];
+  self.navigationController.navigationBarHidden = NO;
+}
 
+- (IBAction)creditButtonTouched:(id)sender {
+  CreditViewController *viewController = 
+    [[[CreditViewController alloc] initWithNibName:@"CreditView" bundle:nil] autorelease];
+  [UIView beginAnimations:nil context:NULL]; 
+  [UIView setAnimationDuration:0.5]; 
+  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:YES]; 
+  [UIView commitAnimations]; 
+  [self.navigationController pushViewController:viewController animated:NO];
 }
 
 @end

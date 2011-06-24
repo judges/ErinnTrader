@@ -10,6 +10,7 @@
 @synthesize launcherViewController = _launcherViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [UIApplication sharedApplication].statusBarHidden = NO;
   return YES;
 }
 

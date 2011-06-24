@@ -45,6 +45,16 @@
 		6C676665138B73FA0022BF09 /* libRestKitSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676661138B73FA0022BF09 /* libRestKitSupport.a */; };
 		6C676666138B73FA0022BF09 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676662138B73FA0022BF09 /* libRestKitXMLParserLibxml.a */; };
 		6C676668138B75570022BF09 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676667138B75570022BF09 /* libRestKitJSONParserJSONKit.a */; };
+		6C6D0B3113B4F646001EC7D6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3013B4F646001EC7D6 /* Default.png */; };
+		6C6D0B3313B4F682001EC7D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3213B4F682001EC7D6 /* Default@2x.png */; };
+		6C6D0B3A13B4FC56001EC7D6 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3513B4FC56001EC7D6 /* config.png */; };
+		6C6D0B3B13B4FC56001EC7D6 /* official.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3613B4FC56001EC7D6 /* official.png */; };
+		6C6D0B3C13B4FC56001EC7D6 /* erinn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3713B4FC56001EC7D6 /* erinn.png */; };
+		6C6D0B3D13B4FC56001EC7D6 /* supply.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3813B4FC56001EC7D6 /* supply.png */; };
+		6C6D0B4113B506EC001EC7D6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4013B506EC001EC7D6 /* info.png */; };
+		6C6D0B4313B50B64001EC7D6 /* credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4213B50B64001EC7D6 /* credit.png */; };
+		6C6D0B4813B5222F001EC7D6 /* CreditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4613B5222F001EC7D6 /* CreditView.xib */; };
+		6C6D0B4B13B525B0001EC7D6 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */; };
 		6C8679D2138700580009A101 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D1138700580009A101 /* UIKit.framework */; };
 		6C8679D4138700580009A101 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D3138700580009A101 /* Foundation.framework */; };
 		6C8679D6138700580009A101 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D5138700580009A101 /* CoreGraphics.framework */; };
@@ -529,6 +539,17 @@
 		6C676661138B73FA0022BF09 /* libRestKitSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C676662138B73FA0022BF09 /* libRestKitXMLParserLibxml.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitXMLParserLibxml.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C676667138B75570022BF09 /* libRestKitJSONParserJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitJSONParserJSONKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6D0B3013B4F646001EC7D6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
+		6C6D0B3213B4F682001EC7D6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Default@2x.png"; sourceTree = "<group>"; };
+		6C6D0B3513B4FC56001EC7D6 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
+		6C6D0B3613B4FC56001EC7D6 /* official.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = official.png; sourceTree = "<group>"; };
+		6C6D0B3713B4FC56001EC7D6 /* erinn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erinn.png; sourceTree = "<group>"; };
+		6C6D0B3813B4FC56001EC7D6 /* supply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = supply.png; sourceTree = "<group>"; };
+		6C6D0B4013B506EC001EC7D6 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		6C6D0B4213B50B64001EC7D6 /* credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credit.png; sourceTree = "<group>"; };
+		6C6D0B4713B5222F001EC7D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreditView.xib; sourceTree = "<group>"; };
+		6C6D0B4913B525B0001EC7D6 /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
 		6C8679CD138700580009A101 /* ErinnTrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErinnTrader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C8679D1138700580009A101 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6C8679D3138700580009A101 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1352,6 +1373,19 @@
 			name = Foundation;
 			sourceTree = "<group>";
 		};
+		6C6D0B3E13B4FC72001EC7D6 /* character */ = {
+			isa = PBXGroup;
+			children = (
+				6C6D0B4013B506EC001EC7D6 /* info.png */,
+				6C6D0B3613B4FC56001EC7D6 /* official.png */,
+				6C6D0B3713B4FC56001EC7D6 /* erinn.png */,
+				6C6D0B3813B4FC56001EC7D6 /* supply.png */,
+				6C6D0B3513B4FC56001EC7D6 /* config.png */,
+				6C6D0B4213B50B64001EC7D6 /* credit.png */,
+			);
+			name = character;
+			sourceTree = "<group>";
+		};
 		6C8679C2138700570009A101 = {
 			isa = PBXGroup;
 			children = (
@@ -1431,6 +1465,8 @@
 				6C9D72A013ABCDDB002D243F /* SearchResultViewController.m */,
 				6CB7319613AC7872002C6151 /* DetailViewController.h */,
 				6CB7319713AC7872002C6151 /* DetailViewController.m */,
+				6C6D0B4913B525B0001EC7D6 /* CreditViewController.h */,
+				6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1455,6 +1491,7 @@
 				6CA6FDC613A70481007EE0D9 /* BoardView.xib */,
 				6CB7319D13AC8D60002C6151 /* SearchResultView.xib */,
 				6CB7319B13AC8D60002C6151 /* DetailView.xib */,
+				6C6D0B4613B5222F001EC7D6 /* CreditView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1462,9 +1499,12 @@
 		6C867A03138701510009A101 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C6D0B3E13B4FC72001EC7D6 /* character */,
 				6C96EFEF13AB5FDA0094DC83 /* EGORefreshTableHeaderView */,
 				6CA8C10B139D01BA00E0E0F5 /* Icon.png */,
 				6CA8C10C139D01BA00E0E0F5 /* Icon@2x.png */,
+				6C6D0B3013B4F646001EC7D6 /* Default.png */,
+				6C6D0B3213B4F682001EC7D6 /* Default@2x.png */,
 				6C96EFF313AB8B040094DC83 /* launcher.png */,
 			);
 			path = Resources;
@@ -2564,6 +2604,15 @@
 				6C96EFF413AB8B040094DC83 /* launcher.png in Resources */,
 				6CB7319F13AC8D60002C6151 /* DetailView.xib in Resources */,
 				6CB731A013AC8D60002C6151 /* SearchResultView.xib in Resources */,
+				6C6D0B3113B4F646001EC7D6 /* Default.png in Resources */,
+				6C6D0B3313B4F682001EC7D6 /* Default@2x.png in Resources */,
+				6C6D0B3A13B4FC56001EC7D6 /* config.png in Resources */,
+				6C6D0B3B13B4FC56001EC7D6 /* official.png in Resources */,
+				6C6D0B3C13B4FC56001EC7D6 /* erinn.png in Resources */,
+				6C6D0B3D13B4FC56001EC7D6 /* supply.png in Resources */,
+				6C6D0B4113B506EC001EC7D6 /* info.png in Resources */,
+				6C6D0B4313B50B64001EC7D6 /* credit.png in Resources */,
+				6C6D0B4813B5222F001EC7D6 /* CreditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2915,6 +2964,7 @@
 				6C4FF0BA13AFD90B009449FB /* LabeledActivityIndicatorView.m in Sources */,
 				6C1BC41813B0390C000FC816 /* CacheManager.m in Sources */,
 				6C1165D013B2645C00669712 /* Constants.m in Sources */,
+				6C6D0B4B13B525B0001EC7D6 /* CreditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2929,6 +2979,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6C6D0B4613B5222F001EC7D6 /* CreditView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C6D0B4713B5222F001EC7D6 /* en */,
+			);
+			name = CreditView.xib;
+			sourceTree = "<group>";
+		};
 		6C8679DA138700580009A101 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

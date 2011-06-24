@@ -43,7 +43,8 @@ static NSString* const kLabelTriona     = @"triona/";
 }
 
 - (void)initNavigationBar {
-  [self.navigationController setToolbarHidden:YES];
+  self.navigationController.navigationBarHidden = NO;
+  self.navigationController.toolbarHidden = YES;
 }
 
 - (void)initActivityIndicator {
