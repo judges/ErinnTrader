@@ -397,6 +397,8 @@
 		6CB7319813AC7872002C6151 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7319713AC7872002C6151 /* DetailViewController.m */; };
 		6CB7319F13AC8D60002C6151 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB7319B13AC8D60002C6151 /* DetailView.xib */; };
 		6CB731A013AC8D60002C6151 /* SearchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB7319D13AC8D60002C6151 /* SearchResultView.xib */; };
+		6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D713B5473900655CBD /* InformationViewController.m */; };
+		6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D913B5476F00655CBD /* InformationView.xib */; };
 		6CD0F71C138A5B64001206D7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F71B138A5B64001206D7 /* Entry.m */; };
 /* End PBXBuildFile section */
 
@@ -1237,6 +1239,9 @@
 		6CB7319E13AC8D60002C6151 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchResultView.xib; sourceTree = "<group>"; };
 		6CB731A513AC8D73002C6151 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/cohakim/Public/Dropbox/projects/ObjC/ErinnTrader/ErinnTrader/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		6CC531B8139CA30B001C610E /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		6CC7F3D613B5473900655CBD /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		6CC7F3D713B5473900655CBD /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		6CC7F3DA13B5476F00655CBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/InformationView.xib; sourceTree = "<group>"; };
 		6CD0F71A138A5B64001206D7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		6CD0F71B138A5B64001206D7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1459,6 +1464,8 @@
 				6C8679E1138700580009A101 /* ErinnTraderAppDelegate.m */,
 				6C4DF591139CC61200318CA2 /* LauncherViewController.h */,
 				6C4DF592139CC61200318CA2 /* LauncherViewController.m */,
+				6CC7F3D613B5473900655CBD /* InformationViewController.h */,
+				6CC7F3D713B5473900655CBD /* InformationViewController.m */,
 				6C8679E9138700580009A101 /* BoardViewController.h */,
 				6C8679EA138700580009A101 /* BoardViewController.m */,
 				6C9D729F13ABCDDB002D243F /* SearchResultViewController.h */,
@@ -1488,6 +1495,7 @@
 			children = (
 				6C8679E3138700580009A101 /* MainWindow.xib */,
 				6CA6FDBA13A6FD3C007EE0D9 /* LauncherView.xib */,
+				6CC7F3D913B5476F00655CBD /* InformationView.xib */,
 				6CA6FDC613A70481007EE0D9 /* BoardView.xib */,
 				6CB7319D13AC8D60002C6151 /* SearchResultView.xib */,
 				6CB7319B13AC8D60002C6151 /* DetailView.xib */,
@@ -2613,6 +2621,7 @@
 				6C6D0B4113B506EC001EC7D6 /* info.png in Resources */,
 				6C6D0B4313B50B64001EC7D6 /* credit.png in Resources */,
 				6C6D0B4813B5222F001EC7D6 /* CreditView.xib in Resources */,
+				6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2965,6 +2974,7 @@
 				6C1BC41813B0390C000FC816 /* CacheManager.m in Sources */,
 				6C1165D013B2645C00669712 /* Constants.m in Sources */,
 				6C6D0B4B13B525B0001EC7D6 /* CreditViewController.m in Sources */,
+				6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3036,6 +3046,14 @@
 			name = SearchResultView.xib;
 			sourceTree = "<group>";
 		};
+		6CC7F3D913B5476F00655CBD /* InformationView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CC7F3DA13B5476F00655CBD /* en */,
+			);
+			name = InformationView.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3101,6 +3119,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3129,6 +3148,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv6 armv7 i386";
@@ -3140,6 +3160,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kimihiko Hattori";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kimihiko Hattori";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3168,6 +3190,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CDABDEEB-45A8-491B-A914-DB19DE3389CA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDABDEEB-45A8-491B-A914-DB19DE3389CA";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;

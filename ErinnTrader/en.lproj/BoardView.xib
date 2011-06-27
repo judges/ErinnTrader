@@ -66,9 +66,8 @@
 							<object class="IBUISegmentedControl" id="419655438">
 								<reference key="NSNextResponder" ref="1073404833"/>
 								<int key="NSvFlags">303</int>
-								<string key="NSFrame">{{6, 8}, {297, 30}}</string>
+								<string key="NSFrame">{{6, 8}, {308, 30}}</string>
 								<reference key="NSSuperview" ref="1073404833"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -112,7 +111,7 @@
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUIBarButtonItem" id="635232840">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIWidth">297</float>
+								<float key="IBUIWidth">308</float>
 								<reference key="IBUICustomView" ref="419655438"/>
 								<reference key="IBUIToolbar" ref="1073404833"/>
 							</object>
@@ -132,7 +131,6 @@
 				<int key="NSvFlags">290</int>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBShowsCancelButton">YES</bool>
