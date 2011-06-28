@@ -19,15 +19,12 @@
 - (void)fadeSplashScreen {
   UIImage *img = [UIImage imageNamed:@"Default.png"];	
 	UIImageView *imageview = 
-    [[[UIImageView alloc] initWithFrame:CGRectMake( 0 , 0.0, 320 , 480 )] autorelease];
+    [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
 	imageview.image = img;
 	[self.window addSubview:imageview];
   
-	self.window.alpha = 1.0;
-	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.9];
-	imageview.alpha = 0.0;
-	[UIView commitAnimations];
+  [UIView animateWithDuration:1.0
+                   animations:^{ imageview.alpha = 0.0; }];
 }
 
 #pragma -

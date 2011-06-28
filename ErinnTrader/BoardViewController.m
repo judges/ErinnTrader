@@ -21,7 +21,7 @@ static NSString* const kLabelTriona     = @"label/triona";
 - (IBAction)searchButtonTouched;
 - (IBAction)tradeTypeChanged:(UISegmentedControl*)sender;
 - (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
+- (void)doneLoadingTableViewDataSource;
 @end
 
 @implementation BoardViewController
@@ -256,16 +256,18 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
   self.entries = objects;
-  [self doneLoadingTableViewData];
+  [self doneLoadingTableViewDataSource];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error" 
-                                                   message:[error localizedDescription] 
-                                                  delegate:nil 
-                                         cancelButtonTitle:@"OK" 
-                                         otherButtonTitles:nil] autorelease];
-  [alert show];
+  if (self.reloading == YES) {
+    [[[[UIAlertView alloc] initWithTitle:@"Error" 
+                                 message:[error localizedDescription]
+                                delegate:nil 
+                       cancelButtonTitle:@"OK" 
+                       otherButtonTitles:nil] autorelease] show];
+  }
+  [self doneLoadingTableViewDataSource];
 }
 
 #pragma mark -
@@ -333,13 +335,13 @@ static NSString* const kLabelTriona     = @"label/triona";
   [self reloadEntryTable];
 }
 
-- (void)doneLoadingTableViewData {
+- (void)doneLoadingTableViewDataSource {
 	self.reloading = NO;
   self.lastUpdated = [NSDate date];
+  [self.refreshHeaderView refreshLastUpdatedDate];
 	[self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.entryTable];
   [self.entryTable reloadData];
 }
-
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
@@ -371,6 +373,10 @@ static NSString* const kLabelTriona     = @"label/triona";
 #pragma UISearchBarDelegate Methods
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {  
+  if ([searchBar.text length] == 0) {
+    return;
+  }
+  
   [UIView animateWithDuration:0.3
                    animations:^{ self.searchBar.frame = CGRectMake(0, -44, 320, 44); }];
   [[self.view viewWithTag:99567] removeFromSuperview];

@@ -206,6 +206,7 @@ static NSString* const kLabelTriona     = @"triona/";
                                          cancelButtonTitle:@"OK" 
                                          otherButtonTitles:nil] autorelease];
   [alert show];
+  [self.activityIndicator hide];
 }
 
 #pragma mark -
