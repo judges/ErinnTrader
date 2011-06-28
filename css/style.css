@@ -1,0 +1,60 @@
+ul.events li
+{
+  border-top: 1px solid #DDDDDD;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 10px 10px 10px;
+  position: relative;
+}
+
+ul.events li.tag-break
+{
+  background: none repeat scroll 0 0 #EEEEEE;
+  color: #000000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+ul.events span.contents
+{
+  display: block;
+  font-size: 11px;
+  padding-right: 50px;
+}
+
+ul.events span.date
+{
+  color: #777777;
+  float: right;
+  font-size: 11px;
+  margin-top: -15px;
+}
+
+ul.events span.status
+{
+  color: #777777;
+  font-size: 12px;
+}
+
+ul.events img.icon {
+    border: 1px solid #CCCCCC;
+    float: left;
+    width: 57px;
+    height: 57px;
+    margin-right: 10px;
+    margin-top: 2px;
+    padding: 1px;
+}
+
+ul.events span.name {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    color: #004477;
+}
+
+ul.events span.description {
+    display: block;
+    font-size: 11px;
+}
