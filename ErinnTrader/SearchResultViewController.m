@@ -16,7 +16,6 @@ static NSString* const kLabelTriona     = @"triona/";
 - (void)changeTradeTypeTo:(TradeType)tradeType;
 - (NSString *)resourcePath;
 - (NSArray *)filteredEntries;
-
 - (IBAction)tradeTypeChanged:(UISegmentedControl*)sender;
 @end
 
