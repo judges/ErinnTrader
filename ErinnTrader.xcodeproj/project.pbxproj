@@ -32,7 +32,6 @@
 		6C182C1413A64AF800422644 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C182BFF13A64AF800422644 /* IASKSpecifierValuesView.xib */; };
 		6C182C1613A64B9B00422644 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C182C1513A64B9B00422644 /* MessageUI.framework */; };
 		6C1BC41813B0390C000FC816 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1BC41713B0390C000FC816 /* CacheManager.m */; };
-		6C2F2C8B139F3FC4003E7475 /* VisualEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F2C8A139F3FC4003E7475 /* VisualEffect.m */; };
 		6C4DF593139CC61200318CA2 /* LauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4DF592139CC61200318CA2 /* LauncherViewController.m */; };
 		6C4FF0B713AFB4F8009449FB /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4FF0B613AFB4F8009449FB /* NSString+Encode.m */; };
 		6C4FF0BA13AFD90B009449FB /* LabeledActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4FF0B913AFD90B009449FB /* LabeledActivityIndicatorView.m */; };
@@ -45,8 +44,6 @@
 		6C676665138B73FA0022BF09 /* libRestKitSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676661138B73FA0022BF09 /* libRestKitSupport.a */; };
 		6C676666138B73FA0022BF09 /* libRestKitXMLParserLibxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676662138B73FA0022BF09 /* libRestKitXMLParserLibxml.a */; };
 		6C676668138B75570022BF09 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C676667138B75570022BF09 /* libRestKitJSONParserJSONKit.a */; };
-		6C6D0B3113B4F646001EC7D6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3013B4F646001EC7D6 /* Default.png */; };
-		6C6D0B3313B4F682001EC7D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3213B4F682001EC7D6 /* Default@2x.png */; };
 		6C6D0B3A13B4FC56001EC7D6 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3513B4FC56001EC7D6 /* config.png */; };
 		6C6D0B3B13B4FC56001EC7D6 /* official.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3613B4FC56001EC7D6 /* official.png */; };
 		6C6D0B3C13B4FC56001EC7D6 /* erinn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B3713B4FC56001EC7D6 /* erinn.png */; };
@@ -400,6 +397,8 @@
 		6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D713B5473900655CBD /* InformationViewController.m */; };
 		6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D913B5476F00655CBD /* InformationView.xib */; };
 		6CD0F71C138A5B64001206D7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F71B138A5B64001206D7 /* Entry.m */; };
+		6CE02E3113BA21EA008E28C4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CE02E2F13BA21EA008E28C4 /* Default.png */; };
+		6CE02E3213BA21EA008E28C4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CE02E3013BA21EA008E28C4 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -524,8 +523,6 @@
 		6C182C1513A64B9B00422644 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6C1BC41613B0390C000FC816 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		6C1BC41713B0390C000FC816 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
-		6C2F2C89139F3FC4003E7475 /* VisualEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisualEffect.h; path = Libraries/UIViewExtension/VisualEffect.h; sourceTree = "<group>"; };
-		6C2F2C8A139F3FC4003E7475 /* VisualEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisualEffect.m; path = Libraries/UIViewExtension/VisualEffect.m; sourceTree = "<group>"; };
 		6C4DF591139CC61200318CA2 /* LauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LauncherViewController.h; sourceTree = "<group>"; };
 		6C4DF592139CC61200318CA2 /* LauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherViewController.m; sourceTree = "<group>"; };
 		6C4FF0B513AFB4F8009449FB /* NSString+Encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encode.h"; sourceTree = "<group>"; };
@@ -541,8 +538,6 @@
 		6C676661138B73FA0022BF09 /* libRestKitSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C676662138B73FA0022BF09 /* libRestKitXMLParserLibxml.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitXMLParserLibxml.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C676667138B75570022BF09 /* libRestKitJSONParserJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRestKitJSONParserJSONKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C6D0B3013B4F646001EC7D6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
-		6C6D0B3213B4F682001EC7D6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Default@2x.png"; sourceTree = "<group>"; };
 		6C6D0B3513B4FC56001EC7D6 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		6C6D0B3613B4FC56001EC7D6 /* official.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = official.png; sourceTree = "<group>"; };
 		6C6D0B3713B4FC56001EC7D6 /* erinn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erinn.png; sourceTree = "<group>"; };
@@ -1244,6 +1239,8 @@
 		6CC7F3DA13B5476F00655CBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/InformationView.xib; sourceTree = "<group>"; };
 		6CD0F71A138A5B64001206D7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		6CD0F71B138A5B64001206D7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		6CE02E2F13BA21EA008E28C4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6CE02E3013BA21EA008E28C4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1355,7 +1352,7 @@
 				6C96EFED13AB5EE40094DC83 /* EGORefreshTableHeaderView */,
 				6CB7305613AC69F1002C6151 /* NSDate-Extensions */,
 				6C4FF0B413AFB4CF009449FB /* Foundation */,
-				6C96EFEE13AB5F460094DC83 /* VisualEffect */,
+				6C96EFEE13AB5F460094DC83 /* LabeledActivityIndicatorView */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1511,9 +1508,9 @@
 				6C96EFEF13AB5FDA0094DC83 /* EGORefreshTableHeaderView */,
 				6CA8C10B139D01BA00E0E0F5 /* Icon.png */,
 				6CA8C10C139D01BA00E0E0F5 /* Icon@2x.png */,
-				6C6D0B3013B4F646001EC7D6 /* Default.png */,
-				6C6D0B3213B4F682001EC7D6 /* Default@2x.png */,
 				6C96EFF313AB8B040094DC83 /* launcher.png */,
+				6CE02E2F13BA21EA008E28C4 /* Default.png */,
+				6CE02E3013BA21EA008E28C4 /* Default@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1527,15 +1524,13 @@
 			name = EGORefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
-		6C96EFEE13AB5F460094DC83 /* VisualEffect */ = {
+		6C96EFEE13AB5F460094DC83 /* LabeledActivityIndicatorView */ = {
 			isa = PBXGroup;
 			children = (
 				6C4FF0B813AFD90B009449FB /* LabeledActivityIndicatorView.h */,
 				6C4FF0B913AFD90B009449FB /* LabeledActivityIndicatorView.m */,
-				6C2F2C89139F3FC4003E7475 /* VisualEffect.h */,
-				6C2F2C8A139F3FC4003E7475 /* VisualEffect.m */,
 			);
-			name = VisualEffect;
+			name = LabeledActivityIndicatorView;
 			sourceTree = "<group>";
 		};
 		6C96EFEF13AB5FDA0094DC83 /* EGORefreshTableHeaderView */ = {
@@ -2612,8 +2607,6 @@
 				6C96EFF413AB8B040094DC83 /* launcher.png in Resources */,
 				6CB7319F13AC8D60002C6151 /* DetailView.xib in Resources */,
 				6CB731A013AC8D60002C6151 /* SearchResultView.xib in Resources */,
-				6C6D0B3113B4F646001EC7D6 /* Default.png in Resources */,
-				6C6D0B3313B4F682001EC7D6 /* Default@2x.png in Resources */,
 				6C6D0B3A13B4FC56001EC7D6 /* config.png in Resources */,
 				6C6D0B3B13B4FC56001EC7D6 /* official.png in Resources */,
 				6C6D0B3C13B4FC56001EC7D6 /* erinn.png in Resources */,
@@ -2622,6 +2615,8 @@
 				6C6D0B4313B50B64001EC7D6 /* credit.png in Resources */,
 				6C6D0B4813B5222F001EC7D6 /* CreditView.xib in Resources */,
 				6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */,
+				6CE02E3113BA21EA008E28C4 /* Default.png in Resources */,
+				6CE02E3213BA21EA008E28C4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2947,7 +2942,6 @@
 				6CA8C6AC139D083A00E0E0F5 /* GDataYouTubeStatistics.m in Sources */,
 				6CA8C6AD139D083A00E0E0F5 /* GDataQueryYouTube.m in Sources */,
 				6CA8C6AE139D083A00E0E0F5 /* GDataServiceGoogleYouTube.m in Sources */,
-				6C2F2C8B139F3FC4003E7475 /* VisualEffect.m in Sources */,
 				6C182C0013A64AF800422644 /* IASKAppSettingsViewController.m in Sources */,
 				6C182C0113A64AF800422644 /* IASKAppSettingsWebViewController.m in Sources */,
 				6C182C0213A64AF800422644 /* IASKSpecifierValuesViewController.m in Sources */,
