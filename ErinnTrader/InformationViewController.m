@@ -1,7 +1,7 @@
 
 #import "InformationViewController.h"
 
-static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/m/information.html";
+static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/mobile-index.html";
 
 @interface InformationViewController ()
 @end
@@ -9,6 +9,7 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/m/info
 @implementation InformationViewController
 
 @synthesize webView;
+@synthesize activityIndicator = _activityIndicator;
 
 #pragma mark -
 #pragma mark Private Methods
@@ -28,12 +29,17 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/m/info
   [self.webView loadRequest:request];
 }
 
+- (void)initActivityIndicator {
+  self.activityIndicator = [[LabeledActivityIndicatorView alloc] initWithParentView:self.view andText:@"Loading"];
+}
+
 #pragma mark -
 #pragma mark Inherit Methods
 
 - (void)loadView {
   [super loadView];
   [self initNavigationBar];
+  [self initActivityIndicator];
 }
 
 - (void)viewDidLoad {
@@ -50,6 +56,9 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/m/info
 }
 
 - (void)dealloc {
+  self.webView.delegate = nil;
+  self.webView = nil;
+  self.activityIndicator = nil;
   [super dealloc];
 }
 
@@ -64,6 +73,25 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/m/info
   [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
   [[self.navigationController.view layer] addAnimation:animation forKey:@"transitionViewAnimation"];	
   [self.navigationController popViewControllerAnimated:NO];
+}
+
+#pragma mark -
+#pragma UIWebView Delegate Methods
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+  NSString *compURL = @"http://phobos.apple.com/WebObjects/";
+  if(NSOrderedSame == [[[request URL] absoluteString] compare:compURL options:NSCaseInsensitiveSearch range:NSMakeRange(0,[compURL length])]) {
+    [[UIApplication sharedApplication] openURL:[request URL]];
+  }
+  return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+  [NSThread detachNewThreadSelector:@selector(show) toTarget:self.activityIndicator withObject:nil];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  [self.activityIndicator hide];
 }
 
 @end
