@@ -8,7 +8,7 @@
 
 @synthesize parentView = _parentView;
 
-- (LabeledActivityIndicatorView *) initWithParentView:(UIView *)view andText:(NSString *)text {
+- (LabeledActivityIndicatorView *)initWithParentView:(UIView *)view andText:(NSString *)text {
   self = [super initWithFrame:CGRectMake(0, 0, Size, Size)];
 	
 	if (self) {
@@ -22,24 +22,21 @@
 		self.alpha = 0.7;
 		self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, Size, Size/2)];
+    UILabel *label = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, Size, Size/2)] autorelease];
     label.text = text;
 		label.textColor = [UIColor whiteColor];
 		label.textAlignment = UITextAlignmentCenter;
 		label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize: [UIFont smallSystemFontSize]];
     
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)] autorelease];
 		activity.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2 + Size/5);
 		
     [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [activity startAnimating];
     
-    [self addSubview: label];
-    [self addSubview: activity];
-    
-		[label release];
-		[activity release];
+    [self addSubview:label];
+    [self addSubview:activity];
 	}
 	
 	return self;

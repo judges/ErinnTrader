@@ -25,7 +25,10 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/mobile
 
 - (void)initWebView {
   NSURL *url = [[[NSURL alloc] initWithString:kInfoURL] autorelease];
-  NSURLRequest *request = [[[NSURLRequest alloc] initWithURL:url] autorelease];
+  NSURLRequest *request = [[[NSURLRequest alloc] initWithURL:url 
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy 
+                                             timeoutInterval:15] autorelease];
+  
   [self.webView loadRequest:request];
 }
 
@@ -79,7 +82,7 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/mobile
 #pragma UIWebView Delegate Methods
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSString *compURL = @"http://phobos.apple.com/WebObjects/";
+  NSString *compURL = @"http://itunes.apple.com/";
   if(NSOrderedSame == [[[request URL] absoluteString] compare:compURL options:NSCaseInsensitiveSearch range:NSMakeRange(0,[compURL length])]) {
     [[UIApplication sharedApplication] openURL:[request URL]];
   }
@@ -87,7 +90,8 @@ static NSString* const kInfoURL = @"http://cohakim.github.com/ErinnTrader/mobile
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-  [NSThread detachNewThreadSelector:@selector(show) toTarget:self.activityIndicator withObject:nil];
+  [self.activityIndicator performSelectorInBackground:@selector(show) withObject:nil];
+  [self.webView resignFirstResponder];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
