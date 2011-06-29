@@ -30,5 +30,5 @@
 @property (nonatomic, copy) NSArray *entries;
 @property (nonatomic, assign) int server;
 @property (nonatomic, assign) int tradeType;
-@property (nonatomic, retain) NSDate *lastUpdated;
+@property (nonatomic, copy) NSDate *lastUpdated;
 @end

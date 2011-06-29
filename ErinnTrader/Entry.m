@@ -52,9 +52,9 @@
 #pragma Inheritance Methods
 
 - (id)initWithCoder:(NSCoder *)coder {
-  self.title = [[coder decodeObjectForKey:@"title"] retain];
-  self.author = [[coder decodeObjectForKey:@"author"] retain];
-  self.content = [[coder decodeObjectForKey:@"content"] retain];
+  self.title = [coder decodeObjectForKey:@"title"];
+  self.author = [coder decodeObjectForKey:@"author"];
+  self.content = [coder decodeObjectForKey:@"content"];
   self.published = [coder decodeIntegerForKey:@"published"];
 	return self;
 }

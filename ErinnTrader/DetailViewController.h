@@ -12,5 +12,5 @@
 }
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UITextView *detailText;
-@property (nonatomic, retain) Entry *entry;
+@property (nonatomic, assign) Entry *entry;
 @end

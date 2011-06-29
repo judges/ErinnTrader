@@ -97,7 +97,7 @@ static NSString* const kLabelTriona     = @"triona/";
 }
 
 - (NSString *)resourcePath {
-  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, self.server, [self.keyword encodeString:NSUTF8StringEncoding]];
+  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, self.server, [[self.keyword encodeString:NSUTF8StringEncoding] autorelease]];
 }
 
 - (NSArray *)filteredEntries {

@@ -67,7 +67,6 @@
 }
 
 - (void)dealloc {
-  self.entry = nil;
   [super dealloc];
 }
 
