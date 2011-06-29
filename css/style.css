@@ -38,20 +38,24 @@ ul.events span.status
 }
 
 ul.events img.icon {
-    border: 1px solid #CCCCCC;
-    float: left;
-    width: 57px;
-    height: 57px;
-    margin-right: 10px;
-    margin-top: 2px;
-    padding: 1px;
+  border: 1px solid #CCCCCC;
+  float: left;
+  width: 57px;
+  height: 57px;
+  margin-right: 10px;
+  margin-top: 2px;
+  padding: 1px;
+}
+
+ul.events a {
+  text-decoration: none;
 }
 
 ul.events span.name {
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 14px;
-    color: #004477;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+  color: #004477;
 }
 
 ul.events span.description {

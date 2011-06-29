@@ -8,12 +8,12 @@ Ext.setup({
     ];
 
     var milestones = [
-      { tag: 'v1.0.0', status: '2011-06-27', contents: '- 公式取引掲示板ブラウジング機能 実装' }
+      { tag: 'v1.0.0', status: '2011-06-27', contents: '- 公式取引掲示板ブラウジング機能 実装' },
     ];
 
     var apps = [
       { url: 'http://itunes.apple.com/jp/app/mabinogitoolkit/id438883602?mt=8', title: 'MabinogiToolKit', 
-        icon: '/images/apps/mabinogi_tool_kit.png', description: 'マビノギライフをより便利にするためのユーティリティ集！' }
+        icon: '/ErinnTrader/images/apps/mabinogi_tool_kit.png', description: 'マビノギライフをより便利にするためのユーティリティ集！' }
     ];
   
     //////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ Ext.setup({
           '<tpl for=".">',
             '<li class="event">',
               '<img class="icon" alt="icon" src="{icon}">',
-              '<span class="name">{title}</span>',
+              '<a href="{url}"><span class="name">{title}</span></a>',
               '<span class="description">{description}</span>',
             '</li>',
           '</tpl>',
