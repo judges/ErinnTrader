@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "InformationViewController.h"
 #import "BoardViewController.h"
+#import "HouseShopViewController.h"
 #import "CreditViewController.h"
 #import "AppSettingsViewController.h"
 

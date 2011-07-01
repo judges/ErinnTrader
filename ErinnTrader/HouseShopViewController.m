@@ -1,39 +1,34 @@
 
-#import "BoardViewController.h"
+#import "HouseShopViewController.h"
 
-static NSString* const kServiceBaseURL  = @"http://www.google.com/";
-static NSString* const kServiceEndPoint = @"reader/public/javascript/";
-static NSString* const kUserIdentifier  = @"user/10597537711022658252/";
-static NSString* const kLabelMari       = @"label/mari";
-static NSString* const kLabelRuari      = @"label/ruari";
-static NSString* const kLabelTarlach    = @"label/tarlach";
-static NSString* const kLabelMorrighan  = @"label/morrighan";
-static NSString* const kLabelCichol     = @"label/cichol";
-static NSString* const kLabelTriona     = @"label/triona";
+static NSString* const kServiceBaseURL  = @"http://kuku-api.heroku.com/";
+static NSString* const kServiceEndPoint = @"erinn_trader/houseshop/";
+static NSString* const kLabelMari       = @"mari/";
+static NSString* const kLabelRuari      = @"ruari/";
+static NSString* const kLabelTarlach    = @"tarlach/";
+static NSString* const kLabelMorrighan  = @"morrighan/";
+static NSString* const kLabelCichol     = @"cichol/";
+static NSString* const kLabelTriona     = @"triona/";
 
-@interface BoardViewController ()
-- (void)reloadEntryTable;
+@interface HouseShopViewController ()
+- (void)reloadItemTable;
 - (void)changeServerTo:(Server)server;
-- (void)changeTradeTypeTo:(TradeType)tradeType;
 - (NSString *)resourcePath;
 - (NSArray *)filteredEntries;
 - (IBAction)backButtonTouched;
 - (IBAction)searchButtonTouched;
-- (IBAction)tradeTypeChanged:(UISegmentedControl*)sender;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewDataSource;
 @end
 
-@implementation BoardViewController
+@implementation HouseShopViewController
 
 @synthesize searchBar = _searchBar;
-@synthesize filterSegment = _filterSegment;
-@synthesize entryTable = _entryTable;
+@synthesize itemTable = _itemTable;
 @synthesize refreshHeaderView = _refreshHeaderView;
 @synthesize reloading = _reloading;
-@synthesize entries = _entries;
+@synthesize items = _items;
 @synthesize server = _server;
-@synthesize tradeType = _tradeType;
 @synthesize lastUpdated = _lastUpdated;
 
 #pragma mark -
@@ -44,7 +39,7 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)initCacheManager {
   [self addObserver:[CacheManager sharedManager]
-         forKeyPath:@"entries" 
+         forKeyPath:@"items" 
             options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
             context:[[Constants kServerSymbol] objectAtIndex:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Server"] intValue]]];
   [self addObserver:[CacheManager sharedManager]
@@ -72,10 +67,10 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)initRefreshHeaderView {
-  CGRect rect = CGRectMake(0.0f, 0.0f - self.entryTable.bounds.size.height, self.view.frame.size.width, self.entryTable.bounds.size.height);
+  CGRect rect = CGRectMake(0.0f, 0.0f - self.itemTable.bounds.size.height, self.view.frame.size.width, self.itemTable.bounds.size.height);
   self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:rect];
   self.refreshHeaderView.delegate = self;
-  [self.entryTable addSubview:self.refreshHeaderView];
+  [self.itemTable addSubview:self.refreshHeaderView];
 }
 
 - (void)initSearchBar {
@@ -84,31 +79,24 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)initControllerState {
-  self.entries = [NSArray array];
+  self.items = [NSArray array];
   self.lastUpdated = [NSDate date];
   [self changeServerTo:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Server"] intValue]];
-  [self changeTradeTypeTo:TradeTypeAll];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Logic
 
-- (void)reloadEntryTable {
+- (void)reloadItemTable {
   RKObjectManager* objectManager = [[RKObjectManager objectManagerWithBaseURL:kServiceBaseURL] retain];
   RKObjectLoader* loader = [objectManager loadObjectsAtResourcePath:self.resourcePath 
-                                                        queryParams:[NSDictionary dictionaryWithObject:@"100" forKey:@"n"]
                                                            delegate:self];
-  loader.objectClass = [Entry class];
-  loader.keyPath = @"items";
+  loader.objectClass = [HouseShopItem class];
   [loader send];
 }
 
 - (void)changeServerTo:(Server)server {
   self.server = server;
-}
-
-- (void)changeTradeTypeTo:(TradeType)tradeType {
-  self.tradeType = tradeType;
 }
 
 - (NSString *)resourcePath {
@@ -133,58 +121,17 @@ static NSString* const kLabelTriona     = @"label/triona";
       label = kLabelTriona;
       break;
   }
-  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, kUserIdentifier, label];
+  return [NSString stringWithFormat:@"%@%@%@", kServiceEndPoint, label, @"1"];
 }
 
 - (NSArray *)filteredEntries {
-  NSArray *filteredEntries = [NSArray array];
-  // ---------------------------------------------------------------------------
-  // Entries for TradeTypeAll
-  if (self.tradeType == TradeTypeAll) {
-    filteredEntries = self.entries;
-  }
-  // ---------------------------------------------------------------------------
-  // Entries for TradeTypeSell
-  else if (self.tradeType == TradeTypeSell) {
-    NSMutableArray *tempArray = [NSMutableArray array];
-    NSIndexSet *indexes = [self.entries indexesOfObjectsPassingTest:^(id obj, NSUInteger index, BOOL *stop) { 
-      if (([((Entry*)obj).title rangeOfString:@"売ります"]).location != NSNotFound) { 
-        return YES; 
-      } 
-      return NO; 
-    }];
-    int index = [indexes firstIndex];
-    while(index != NSNotFound) {
-      [tempArray addObject:[self.entries objectAtIndex:index]];
-      index = [indexes indexGreaterThanIndex:index];
-    }
-    filteredEntries = [NSArray arrayWithArray:tempArray];
-  }
-  // ---------------------------------------------------------------------------
-  // Entries for TradeTypeBuy
-  else if (self.tradeType == TradeTypeBuy) {
-    NSMutableArray *tempArray = [NSMutableArray array];
-    NSIndexSet *indexes = [self.entries indexesOfObjectsPassingTest:^(id obj, NSUInteger index, BOOL *stop) { 
-      if (([((Entry*)obj).title rangeOfString:@"買います"]).location != NSNotFound) { 
-        return YES; 
-      } 
-      return NO; 
-    }];
-    int index = [indexes firstIndex];
-    while(index != NSNotFound) {
-      [tempArray addObject:[self.entries objectAtIndex:index]];
-      index = [indexes indexGreaterThanIndex:index];
-    }
-    filteredEntries = [NSArray arrayWithArray:tempArray];
-  }
-  // ---------------------------------------------------------------------------
-  return filteredEntries;
+  return self.items;
 }
 
 #pragma mark -
 #pragma mark Inherit Methods
 
--(void)loadView {
+- (void)loadView {
   [super loadView];
   [self initCacheManager];
   [self initControllerState];
@@ -197,7 +144,7 @@ static NSString* const kLabelTriona     = @"label/triona";
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self.refreshHeaderView refreshLastUpdatedDate];
-  [self.entryTable reloadData];
+  [self.itemTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -210,9 +157,9 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)dealloc {
   self.refreshHeaderView = nil;
-  self.entries = nil;
+  self.items = nil;
   self.lastUpdated = nil;
-  [self removeObserver:[CacheManager sharedManager] forKeyPath:@"entries"];
+  [self removeObserver:[CacheManager sharedManager] forKeyPath:@"items"];
   [self removeObserver:[CacheManager sharedManager] forKeyPath:@"lastUpdated"];
   [super dealloc];
 }
@@ -243,11 +190,6 @@ static NSString* const kLabelTriona     = @"label/triona";
   [self.searchBar becomeFirstResponder];
 }
 
-- (IBAction)tradeTypeChanged:(UISegmentedControl*)sender {
-  [self changeTradeTypeTo:sender.selectedSegmentIndex];
-  [self.entryTable reloadData];
-}
-
 #pragma mark -
 #pragma mark RKObjectLoaderDelegate Methods
 
@@ -255,7 +197,7 @@ static NSString* const kLabelTriona     = @"label/triona";
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-  self.entries = objects;
+  self.items = objects;
   [self doneLoadingTableViewDataSource];
 }
 
@@ -287,23 +229,11 @@ static NSString* const kLabelTriona     = @"label/triona";
 ////////////////////////////////////////////////////////////////////////////////
 // row
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  Entry *entry = [self.filteredEntries objectAtIndex:indexPath.row];
-  CGSize ts1 = [entry.title sizeWithFont:[UIFont systemFontOfSize:13]
-                       constrainedToSize:CGSizeMake(tableView.frame.size.width - 40, tableView.frame.size.height)
-                           lineBreakMode:UILineBreakModeWordWrap];  
-  NSString *detailText = [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]];
-  CGSize ts2 = [detailText sizeWithFont:[UIFont systemFontOfSize:13]
-                                               constrainedToSize:tableView.frame.size
-                                                   lineBreakMode:UILineBreakModeWordWrap];  
-  return ts1.height + ts2.height + 10;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *CellIdentifier = @"MyIdentifer";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                    reuseIdentifier:CellIdentifier] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont systemFontOfSize:13];
@@ -311,20 +241,18 @@ static NSString* const kLabelTriona     = @"label/triona";
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
   }
-  Entry *entry = [self.filteredEntries objectAtIndex:indexPath.row];
+  HouseShopItem *item = [self.filteredEntries objectAtIndex:indexPath.row];
   
-  cell.textLabel.text = entry.title;
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", 
-    entry.author, [ApplicationHelper fuzzyTime:[NSDate dateWithTimeIntervalSince1970:entry.published]]];
-
+  cell.textLabel.text = item.item;
+  cell.detailTextLabel.text = item.formatted_price;
   return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  DetailViewController *detailViewController =
-    [[[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil] autorelease];
-  detailViewController.entry = [self.filteredEntries objectAtIndex:indexPath.row];
-  [self.navigationController pushViewController:detailViewController animated:YES];
+//  DetailViewController *detailViewController =
+//    [[[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil] autorelease];
+//  detailViewController.entry = [self.filteredEntries objectAtIndex:indexPath.row];
+//  [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark -
@@ -332,15 +260,15 @@ static NSString* const kLabelTriona     = @"label/triona";
 
 - (void)reloadTableViewDataSource {
 	self.reloading = YES;
-  [self reloadEntryTable];
+  [self reloadItemTable];
 }
 
 - (void)doneLoadingTableViewDataSource {
 	self.reloading = NO;
   self.lastUpdated = [NSDate date];
   [self.refreshHeaderView refreshLastUpdatedDate];
-	[self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.entryTable];
-  [self.entryTable reloadData];
+	[self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.itemTable];
+  [self.itemTable reloadData];
 }
 
 #pragma mark -
@@ -381,11 +309,11 @@ static NSString* const kLabelTriona     = @"label/triona";
                    animations:^{ self.searchBar.frame = CGRectMake(0, -44, 320, 44); }];
   [[self.view viewWithTag:99567] removeFromSuperview];
   [searchBar resignFirstResponder];
-
-  SearchResultViewController *searchResultViewController =
-    [[[SearchResultViewController alloc] initWithNibName:@"SearchResultView" bundle:nil] autorelease];
-  searchResultViewController.keyword = searchBar.text;
-  [self.navigationController pushViewController:searchResultViewController animated:YES];
+  
+//  SearchResultViewController *searchResultViewController =
+//    [[[SearchResultViewController alloc] initWithNibName:@"SearchResultView" bundle:nil] autorelease];
+//  searchResultViewController.keyword = searchBar.text;
+//  [self.navigationController pushViewController:searchResultViewController animated:YES];
 }  
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

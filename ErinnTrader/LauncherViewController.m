@@ -73,6 +73,16 @@
 }
 
 - (IBAction)erinnButtonTouched:(id)sender {
+  CATransition *animation = [CATransition animation];
+  animation.type = kCATransitionFade;
+  animation.subtype = kCATransitionFromBottom;
+  [animation setDuration:0.5];
+  [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+  [[self.navigationController.view layer] addAnimation:animation forKey: @"transitionViewAnimation"];	
+  
+  HouseShopViewController *houseShopViewController = 
+    [[[HouseShopViewController alloc] initWithNibName:@"HouseShopView" bundle:nil] autorelease];
+  [self.navigationController pushViewController:houseShopViewController animated:NO];
 }
 
 - (IBAction)supplyButtonTouched:(id)sender {

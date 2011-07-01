@@ -52,6 +52,7 @@
 		6C6D0B4313B50B64001EC7D6 /* credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4213B50B64001EC7D6 /* credit.png */; };
 		6C6D0B4813B5222F001EC7D6 /* CreditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4613B5222F001EC7D6 /* CreditView.xib */; };
 		6C6D0B4B13B525B0001EC7D6 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */; };
+		6C6ED24313BD5ECD006458CE /* HouseShopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6ED24213BD5ECD006458CE /* HouseShopItem.m */; };
 		6C8679D2138700580009A101 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D1138700580009A101 /* UIKit.framework */; };
 		6C8679D4138700580009A101 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D3138700580009A101 /* Foundation.framework */; };
 		6C8679D6138700580009A101 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8679D5138700580009A101 /* CoreGraphics.framework */; };
@@ -397,6 +398,8 @@
 		6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D713B5473900655CBD /* InformationViewController.m */; };
 		6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CC7F3D913B5476F00655CBD /* InformationView.xib */; };
 		6CD0F71C138A5B64001206D7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F71B138A5B64001206D7 /* Entry.m */; };
+		6CD9F74E13BD567E00E84996 /* HouseShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CD9F74C13BD567E00E84996 /* HouseShopView.xib */; };
+		6CD9F75113BD57B800E84996 /* HouseShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD9F75013BD57B800E84996 /* HouseShopViewController.m */; };
 		6CE02E3113BA21EA008E28C4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CE02E2F13BA21EA008E28C4 /* Default.png */; };
 		6CE02E3213BA21EA008E28C4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CE02E3013BA21EA008E28C4 /* Default@2x.png */; };
 /* End PBXBuildFile section */
@@ -547,6 +550,8 @@
 		6C6D0B4713B5222F001EC7D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreditView.xib; sourceTree = "<group>"; };
 		6C6D0B4913B525B0001EC7D6 /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
 		6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		6C6ED24113BD5ECD006458CE /* HouseShopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseShopItem.h; sourceTree = "<group>"; };
+		6C6ED24213BD5ECD006458CE /* HouseShopItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseShopItem.m; sourceTree = "<group>"; };
 		6C8679CD138700580009A101 /* ErinnTrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErinnTrader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C8679D1138700580009A101 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6C8679D3138700580009A101 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1239,6 +1244,9 @@
 		6CC7F3DA13B5476F00655CBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/InformationView.xib; sourceTree = "<group>"; };
 		6CD0F71A138A5B64001206D7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		6CD0F71B138A5B64001206D7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		6CD9F74D13BD567E00E84996 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HouseShopView.xib; sourceTree = "<group>"; };
+		6CD9F74F13BD57B800E84996 /* HouseShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseShopViewController.h; sourceTree = "<group>"; };
+		6CD9F75013BD57B800E84996 /* HouseShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseShopViewController.m; sourceTree = "<group>"; };
 		6CE02E2F13BA21EA008E28C4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6CE02E3013BA21EA008E28C4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1362,6 +1370,8 @@
 			children = (
 				6CD0F71A138A5B64001206D7 /* Entry.h */,
 				6CD0F71B138A5B64001206D7 /* Entry.m */,
+				6C6ED24113BD5ECD006458CE /* HouseShopItem.h */,
+				6C6ED24213BD5ECD006458CE /* HouseShopItem.m */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -1469,6 +1479,8 @@
 				6C9D72A013ABCDDB002D243F /* SearchResultViewController.m */,
 				6CB7319613AC7872002C6151 /* DetailViewController.h */,
 				6CB7319713AC7872002C6151 /* DetailViewController.m */,
+				6CD9F74F13BD57B800E84996 /* HouseShopViewController.h */,
+				6CD9F75013BD57B800E84996 /* HouseShopViewController.m */,
 				6C6D0B4913B525B0001EC7D6 /* CreditViewController.h */,
 				6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */,
 			);
@@ -1496,6 +1508,7 @@
 				6CA6FDC613A70481007EE0D9 /* BoardView.xib */,
 				6CB7319D13AC8D60002C6151 /* SearchResultView.xib */,
 				6CB7319B13AC8D60002C6151 /* DetailView.xib */,
+				6CD9F74C13BD567E00E84996 /* HouseShopView.xib */,
 				6C6D0B4613B5222F001EC7D6 /* CreditView.xib */,
 			);
 			name = Views;
@@ -2617,6 +2630,7 @@
 				6CC7F3DB13B5476F00655CBD /* InformationView.xib in Resources */,
 				6CE02E3113BA21EA008E28C4 /* Default.png in Resources */,
 				6CE02E3213BA21EA008E28C4 /* Default@2x.png in Resources */,
+				6CD9F74E13BD567E00E84996 /* HouseShopView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2969,6 +2983,8 @@
 				6C1165D013B2645C00669712 /* Constants.m in Sources */,
 				6C6D0B4B13B525B0001EC7D6 /* CreditViewController.m in Sources */,
 				6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */,
+				6CD9F75113BD57B800E84996 /* HouseShopViewController.m in Sources */,
+				6C6ED24313BD5ECD006458CE /* HouseShopItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3046,6 +3062,14 @@
 				6CC7F3DA13B5476F00655CBD /* en */,
 			);
 			name = InformationView.xib;
+			sourceTree = "<group>";
+		};
+		6CD9F74C13BD567E00E84996 /* HouseShopView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CD9F74D13BD567E00E84996 /* en */,
+			);
+			name = HouseShopView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
