@@ -4,11 +4,12 @@ Ext.setup({
     //////////////////////////////////////////////////////////////////////////
     // Data Store
     var infos = [
-      { date: '2011-06-24', contents: 'えりとれ！ v1.0.0 Released.' },
+      { date: '2011-07-04', contents: 'えりとれ！ v1.0.0 released.' },
     ];
 
     var milestones = [
-      { tag: 'v1.0.0', status: '2011-06-27', contents: '- 公式取引掲示板ブラウジング機能 実装' },
+      { tag: 'v2.0.0', status: '(mid july 2011)', contents: '- ハウスショップアイテムブラウズ機能 実装' },
+      { tag: 'v1.0.0', status: '(2011-07-04 released.)', contents: '- 公式取引掲示板ブラウズ機能 実装' },
     ];
 
     var apps = [
