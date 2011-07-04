@@ -248,11 +248,16 @@ static NSString* const kLabelTriona     = @"triona/";
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.row == ([self.filteredEntries count] - 1)) {
+  }
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//  DetailViewController *detailViewController =
-//    [[[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil] autorelease];
-//  detailViewController.entry = [self.filteredEntries objectAtIndex:indexPath.row];
-//  [self.navigationController pushViewController:detailViewController animated:YES];
+  HouseShopItemViewController *houseShopItemViewController =
+    [[[HouseShopItemViewController alloc] initWithNibName:@"HouseShopItemView" bundle:nil] autorelease];
+  houseShopItemViewController.houseShopItem = [self.filteredEntries objectAtIndex:indexPath.row];
+  [self.navigationController pushViewController:houseShopItemViewController animated:YES];
 }
 
 #pragma mark -
@@ -310,10 +315,10 @@ static NSString* const kLabelTriona     = @"triona/";
   [[self.view viewWithTag:99567] removeFromSuperview];
   [searchBar resignFirstResponder];
   
-//  SearchResultViewController *searchResultViewController =
-//    [[[SearchResultViewController alloc] initWithNibName:@"SearchResultView" bundle:nil] autorelease];
-//  searchResultViewController.keyword = searchBar.text;
-//  [self.navigationController pushViewController:searchResultViewController animated:YES];
+  HouseShopSearchResultViewController *searchResultViewController =
+    [[[HouseShopSearchResultViewController alloc] initWithNibName:@"HouseShopSearchResultView" bundle:nil] autorelease];
+  searchResultViewController.keyword = searchBar.text;
+  [self.navigationController pushViewController:searchResultViewController animated:YES];
 }  
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

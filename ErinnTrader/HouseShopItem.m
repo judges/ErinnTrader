@@ -18,16 +18,20 @@
 
 - (NSString *)formatted_price {
   int price = [[self.price stringByReplacingOccurrencesOfString:@"," 
-                                                     withString:@""] intValue];
+                                                     withString:@""] floatValue];
   NSString *formatted;
   if (price < 1000) {
     formatted = [NSString stringWithFormat:@"%d", price];
   }
   else if (price < 1000000) {
-    formatted = [NSString stringWithFormat:@"%.2fK", price / 1000];
+    formatted = [NSString stringWithFormat:@"%dK", price / 1000];
   }
   else {
-    formatted = [NSString stringWithFormat:@"%.2fM", price / 1000000];
+    NSDecimalNumber *decimalPrice = 
+      [NSDecimalNumber decimalNumberWithDecimal:[[NSNumber numberWithInt:price] decimalValue]];
+    float floatPrice = 
+      [[decimalPrice decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"1000000"]] floatValue];
+    formatted = [NSString stringWithFormat:@"%.1fM", floatPrice];
   }
   return formatted;
 }

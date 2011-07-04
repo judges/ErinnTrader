@@ -3,6 +3,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <RestKit/RestKit.h>
 #import "EGORefreshTableHeaderView.h"
+#import "HouseShopItemViewController.h"
+#import "HouseShopSearchResultViewController.h"
 #import "Constants.h"
 #import "CacheManager.h"
 #import "HouseShopItem.h"

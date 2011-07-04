@@ -77,6 +77,10 @@
 		6CA6FDBD13A6FD3C007EE0D9 /* LauncherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6FDBA13A6FD3C007EE0D9 /* LauncherView.xib */; };
 		6CA6FDC513A702D8007EE0D9 /* AppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6FDC413A702D8007EE0D9 /* AppSettingsViewController.m */; };
 		6CA6FDC813A70481007EE0D9 /* BoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6FDC613A70481007EE0D9 /* BoardView.xib */; };
+		6CA7BB2C13C14D8100CDECE1 /* HouseShopItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7BB2B13C14D8100CDECE1 /* HouseShopItemViewController.m */; };
+		6CA7BB3113C14F3A00CDECE1 /* HouseShopItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA7BB2F13C14F3A00CDECE1 /* HouseShopItemView.xib */; };
+		6CA7BB3413C16C9700CDECE1 /* HouseShopSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7BB3313C16C9700CDECE1 /* HouseShopSearchResultViewController.m */; };
+		6CA7BB3913C16E0600CDECE1 /* HouseShopSearchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA7BB3713C16E0600CDECE1 /* HouseShopSearchResultView.xib */; };
 		6CA8C10D139D01BA00E0E0F5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8C10B139D01BA00E0E0F5 /* Icon.png */; };
 		6CA8C10E139D01BA00E0E0F5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8C10C139D01BA00E0E0F5 /* Icon@2x.png */; };
 		6CA8C579139D082600E0E0F5 /* GDataFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8C2F1139D082500E0E0F5 /* GDataFramework.m */; };
@@ -584,6 +588,12 @@
 		6CA6FDC313A702D8007EE0D9 /* AppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettingsViewController.h; sourceTree = "<group>"; };
 		6CA6FDC413A702D8007EE0D9 /* AppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingsViewController.m; sourceTree = "<group>"; };
 		6CA6FDC713A70481007EE0D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BoardView.xib; sourceTree = "<group>"; };
+		6CA7BB2A13C14D8100CDECE1 /* HouseShopItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseShopItemViewController.h; sourceTree = "<group>"; };
+		6CA7BB2B13C14D8100CDECE1 /* HouseShopItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseShopItemViewController.m; sourceTree = "<group>"; };
+		6CA7BB3013C14F3A00CDECE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HouseShopItemView.xib; sourceTree = "<group>"; };
+		6CA7BB3213C16C9700CDECE1 /* HouseShopSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseShopSearchResultViewController.h; sourceTree = "<group>"; };
+		6CA7BB3313C16C9700CDECE1 /* HouseShopSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseShopSearchResultViewController.m; sourceTree = "<group>"; };
+		6CA7BB3813C16E0600CDECE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HouseShopSearchResultView.xib; sourceTree = "<group>"; };
 		6CA8C10B139D01BA00E0E0F5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6CA8C10C139D01BA00E0E0F5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		6CA8C2EE139D082500E0E0F5 /* GData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GData.h; sourceTree = "<group>"; };
@@ -1481,6 +1491,10 @@
 				6CB7319713AC7872002C6151 /* DetailViewController.m */,
 				6CD9F74F13BD57B800E84996 /* HouseShopViewController.h */,
 				6CD9F75013BD57B800E84996 /* HouseShopViewController.m */,
+				6CA7BB3213C16C9700CDECE1 /* HouseShopSearchResultViewController.h */,
+				6CA7BB3313C16C9700CDECE1 /* HouseShopSearchResultViewController.m */,
+				6CA7BB2A13C14D8100CDECE1 /* HouseShopItemViewController.h */,
+				6CA7BB2B13C14D8100CDECE1 /* HouseShopItemViewController.m */,
 				6C6D0B4913B525B0001EC7D6 /* CreditViewController.h */,
 				6C6D0B4A13B525B0001EC7D6 /* CreditViewController.m */,
 			);
@@ -1509,6 +1523,8 @@
 				6CB7319D13AC8D60002C6151 /* SearchResultView.xib */,
 				6CB7319B13AC8D60002C6151 /* DetailView.xib */,
 				6CD9F74C13BD567E00E84996 /* HouseShopView.xib */,
+				6CA7BB3713C16E0600CDECE1 /* HouseShopSearchResultView.xib */,
+				6CA7BB2F13C14F3A00CDECE1 /* HouseShopItemView.xib */,
 				6C6D0B4613B5222F001EC7D6 /* CreditView.xib */,
 			);
 			name = Views;
@@ -2631,6 +2647,8 @@
 				6CE02E3113BA21EA008E28C4 /* Default.png in Resources */,
 				6CE02E3213BA21EA008E28C4 /* Default@2x.png in Resources */,
 				6CD9F74E13BD567E00E84996 /* HouseShopView.xib in Resources */,
+				6CA7BB3113C14F3A00CDECE1 /* HouseShopItemView.xib in Resources */,
+				6CA7BB3913C16E0600CDECE1 /* HouseShopSearchResultView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2985,6 +3003,8 @@
 				6CC7F3D813B5473900655CBD /* InformationViewController.m in Sources */,
 				6CD9F75113BD57B800E84996 /* HouseShopViewController.m in Sources */,
 				6C6ED24313BD5ECD006458CE /* HouseShopItem.m in Sources */,
+				6CA7BB2C13C14D8100CDECE1 /* HouseShopItemViewController.m in Sources */,
+				6CA7BB3413C16C9700CDECE1 /* HouseShopSearchResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3038,6 +3058,22 @@
 				6CA6FDC713A70481007EE0D9 /* en */,
 			);
 			name = BoardView.xib;
+			sourceTree = "<group>";
+		};
+		6CA7BB2F13C14F3A00CDECE1 /* HouseShopItemView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CA7BB3013C14F3A00CDECE1 /* en */,
+			);
+			name = HouseShopItemView.xib;
+			sourceTree = "<group>";
+		};
+		6CA7BB3713C16E0600CDECE1 /* HouseShopSearchResultView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CA7BB3813C16E0600CDECE1 /* en */,
+			);
+			name = HouseShopSearchResultView.xib;
 			sourceTree = "<group>";
 		};
 		6CB7319B13AC8D60002C6151 /* DetailView.xib */ = {
